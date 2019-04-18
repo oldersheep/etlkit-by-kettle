@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口文件所在的路径地址 -->
+<mapper namespace="com.xxx.etl.mapper.MScheduleResultMapper">
+
+	<sql id="whereCoulse">
+		WHERE
+			e.ID_JOBENTRY_TYPE = 50
+		AND t.START_TIME <![CDATA[  >=  ]]> #{startTime}
+		AND t.END_TIME <![CDATA[  <=  ]]> #{endTime}
+		<if test="taskName != null and taskName != ''">  
+        	AND t.TASK_NAME LIKE CONCAT(CONCAT('%', #{taskName, jdbcType=VARCHAR}),'%')  
+    	</if>
+	</sql>
+
+	<select id="getTaskLog" resultType="com.xxx.etl.vo.ZTaskLogDetailVO">
+		SELECT
+			t.TASK_NAME,
+			t.END_TIME,
+			t.RESULT,
+			l.STEPNAME,
+			l.LINES_INPUT,
+			l.LINES_OUTPUT,
+			l.`ERRORS`
+		FROM
+			m_schedule_result t
+		LEFT JOIN r_jobentry e ON t.ID_JOB = e.ID_JOB
+		LEFT JOIN m_step_log l ON e.`NAME` = l.TRANSNAME
+		AND l.LOG_DATE <![CDATA[  >=  ]]> t.START_TIME
+		AND l.LOG_DATE <![CDATA[   <=  ]]> t.END_TIME
+		<include refid="whereCoulse"></include>
+		ORDER BY
+			t.END_TIME DESC,
+			t.TASK_NAME,
+			l.STEPNAME
+	</select>
+	
+	<select id="getLogTotalCount" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM
+			m_schedule_result t
+		LEFT JOIN r_jobentry e ON t.ID_JOB = e.ID_JOB
+		LEFT JOIN m_step_log l ON e.`NAME` = l.TRANSNAME
+		AND l.LOG_DATE <![CDATA[  >=  ]]> t.START_TIME
+		AND l.LOG_DATE <![CDATA[   <=  ]]> t.END_TIME
+		<include refid="whereCoulse"></include>
+	</select>
+	
+	<select id="getErrorLogCount" resultType="java.lang.Integer">
+		SELECT count(1)
+		FROM
+			m_schedule_result t
+		LEFT JOIN r_jobentry e ON t.ID_JOB = e.ID_JOB
+		LEFT JOIN m_step_log l ON e.`NAME` = l.TRANSNAME
+		AND l.LOG_DATE <![CDATA[  >=  ]]> t.START_TIME
+		AND l.LOG_DATE <![CDATA[   <=  ]]> t.END_TIME
+		<include refid="whereCoulse"></include>
+		AND t.result=0
+	</select>
+	
+	<select id="getNewestResultByTaskId" resultType="com.xxx.etl.pojo.MScheduleResult">
+		SELECT * FROM m_schedule_result t
+		WHERE t.TASK_ID = #{taskId }
+		ORDER BY t.START_TIME DESC
+		LIMIT 0,1
+	</select>
+</mapper>  

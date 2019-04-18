@@ -1,0 +1,21 @@
+@charset "utf-8";
+body{ font-size:12px;}
+body,ul,dl,ol,dt,dd,li,p,div,h1,h2,h3,h4,h5,h6,form,table,td,img,input,br{padding:0;margin:0; }
+a,button{text-decoration:none;outline:none;}
+a:hover{text-decoration:none}
+a:focus{out-line:none}
+a:active{border:0;out-line:0;text-decoration:none}
+a:hover,a:focus,a:link,a:visited,a:active { text-decoration: none;}
+*::after, *::before{box-sizing:none;border:none;}
+img{border:none}
+li{list-style:none;}
+input,select,textarea{outline:none;border:none;background:none;vertical-align:middle}
+textarea{resize:none}/*禁止文本域随意拖放大小*/
+/* 清浮动*/
+.clearfix{zoom:1;}
+.clearfix:after{display:block;clear:both;content:""}
+.fl{float:left}
+.fr{float:right}
+body{padding:0;margin:0;}
+.layui_wrap{overflow:hidden;padding:0;margin:0}
+#wrap{overflow:hidden;}

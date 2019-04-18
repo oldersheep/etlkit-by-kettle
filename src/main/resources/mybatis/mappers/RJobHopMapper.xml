@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口文件所在的路径地址 -->
+<mapper namespace="com.xxx.etl.mapper.RJobHopMapper">
+	<select id="getFlowStart" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		SELECT DISTINCT id_jobentry_copy_from FROM r_job_hop
+		WHERE id_job=#{idJob}
+		  AND id_jobentry_copy_from 
+		      NOT IN (SELECT DISTINCT id_jobentry_copy_to FROM r_job_hop WHERE id_job=#{idJob})
+	</select>
+
+	<select id="getFlowEnd" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		SELECT DISTINCT id_jobentry_copy_to FROM r_job_hop
+		WHERE id_job=#{idJob}
+		  AND id_jobentry_copy_to 
+		      NOT IN (SELECT DISTINCT id_jobentry_copy_from FROM r_job_hop WHERE id_job=#{idJob})
+	</select>
+
+	<select id="getMiddleNode" resultType="com.xxx.etl.pojo.RJobHop">
+		SELECT * FROM r_job_hop
+		 WHERE id_job=#{idJob}
+		   AND id_jobentry_copy_from=#{idJobentryCopyFrom}
+	</select>
+	
+	<select id="getLRFroms" resultType="java.lang.Integer">
+		SELECT id_jobentry_copy_from FROM r_job_hop
+		WHERE id_job = #{idJob}
+		GROUP BY id_jobentry_copy_from HAVING COUNT(1) > 1
+	</select>
+	
+	<select id="getLRTos" resultType="java.lang.Integer">
+		SELECT id_jobentry_copy_to FROM r_job_hop
+		WHERE id_job = #{idJob}
+		GROUP BY id_jobentry_copy_to HAVING COUNT(1) > 1
+	</select>
+</mapper>  

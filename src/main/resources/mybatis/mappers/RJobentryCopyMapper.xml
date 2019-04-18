@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口文件所在的路径地址 -->
+<mapper namespace="com.xxx.etl.mapper.RJobentryCopyMapper">
+	<select id="getMinXByIdJob" resultType="java.lang.Integer">
+		SELECT min(GUI_LOCATION_X)
+		  FROM R_Jobentry_Copy
+		 WHERE ID_JOB=#{idJob}
+	</select>
+
+	<select id="getMaxXByIdJob" resultType="java.lang.Integer">
+		SELECT max(GUI_LOCATION_X)
+		  FROM R_Jobentry_Copy
+		 WHERE ID_JOB=#{idJob}
+	</select>
+</mapper>  

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口文件所在的路径地址 -->
+<mapper namespace="com.xxx.etl.mapper.RDatabaseMapper">
+
+	<!-- 查询页面展示所需的字段 -->
+	<select id="selectByNameOrNull" parameterType="com.xxx.etl.pojo.RDatabase" 
+		resultType="com.xxx.etl.pojo.RDatabase">
+		
+		select d.*,t.code dbType
+		from r_database d 
+		left join r_database_type t 
+		on d.id_database_type = t.id_database_type
+		<where>
+			<if test="name != '' and name != null">
+			 and d.name like '%${name}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 下面是针对r_database_attribute 的两个操作，先插入，再更新端口，实为一个事务，命名安照配置文件来 -->
+	<insert id="saveDbAttr" parameterType="com.xxx.etl.pojo.RDatabase">
+		insert into r_database_attribute (id_database,code,value_str) 
+		select #{idDatabase} as id_database,code,value_str 
+		from m_database_attribute
+		where id_database_type=#{idDatabaseType} 
+	</insert>
+	
+	<update id="updateDbAttrPort" parameterType="com.xxx.etl.pojo.RDatabase">
+		update r_database_attribute set value_str=#{port} where id_database=#{idDatabase} and code='PORT_NUMBER'
+	</update>
+	
+	<!-- 批量删除r_database_attribute中相关属性 -->
+	<delete id="deleteDbAttrByIdDatabases" parameterType="java.util.List">
+		delete from r_database_attribute 
+		where id_database in
+		<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+</mapper>

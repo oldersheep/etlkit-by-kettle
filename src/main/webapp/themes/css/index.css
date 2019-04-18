@@ -1,0 +1,148 @@
+@charset "utf-8";
+.layui_head{background-color:#4C7B97; position:relative;height:80px;}
+.layui_head .logo{ font-size:36px; font-weight:bold; color:#fff; padding:16px;}
+.exit{ padding:0 25px; color:#fff; font-size:12px;}
+.exit:hover{ color:#fff;}
+.top_menu{ height:80px; line-height:80px; color:#fff; position:absolute; right:10px; top:0; }
+
+/*左侧导航*/
+.menu1>li{  border-bottom:1px solid #eee; line-height:50px;position:relative;}
+.menu1>li.active{ background-color:#59666E;}
+.menu1>li>a{ display:inline-block; width:100%;padding-left:20px; font-size:16px; color:#fff;font-family:"黑体";}
+.menu_l{min-width:200px; background-color:#3A474F;}
+.menu_l li ul li{padding-left:40px;height:24px;line-height: 24px;margin-bottom: 5px;}
+.menu_l li ul li a{color:#4C7B97}
+.menu_l li ul li a:hover{color:#fff}
+
+/*menu_nav*/
+.tip{margin:10px 0;position:relative}
+.tip .menu_input{margin-left: 15px;margin-right: 0}
+.tip .down_menu{display:none;position:absolute;top:40px;left:0;background:#c2c2c2;width:153px;z-index:999;border-radius:3px;}
+.tip .down_menu li{color:#fff;padding:10px}
+.tip .down_menu li a{color:#fff}
+.tip .down_menu li a:hover{color:#000}
+.ser_tab th{text-align: center;}
+.layui-nav-more {
+    display:inline-block;
+    border-color: #333 transparent transparent;
+    border-style: solid dashed dashed;
+    border-width: 6px;
+    content: "";
+    cursor: pointer;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    left: 3px;
+    top: 4px;
+    width: 0;
+}
+.layui-nav-more_1 {
+    display:inline-block;
+	border-color: transparent transparent #333;
+    border-style: solid dashed dashed;
+    border-width: 6px;
+    content: "";
+    cursor: pointer;
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    left: 3px;
+    top: 0px;
+    width: 0;
+}
+/*必填项*/
+.red{color:red;padding-right:3px;}
+.data_new .layui-form-label{width:120px;}
+.data_new .layui-form-item .layui-input-inline {
+    float: left;
+    margin-right: 10px;
+    width: 400px;
+}
+/*分页*/
+.page{text-align: right;margin-top: -10px}
+
+/*底部固定按钮*/
+.pad_80{padding-bottom: 80px}
+.submit_btn{position:fixed;bottom:0;width:100%;background:#fff;border:1px solid #ccc;padding:10px 0;z-index:99999}
+.submit_btn{text-align:center}
+/*****************************发布管理**********************/
+/*****************************发布管理页面**********************/
+.rel_left{width:200px;position:absolute;left:0;top:10px;height:96%;border:1px solid #ccc;overflow-y: auto;}
+.rel_right{margin-left: 210px}
+.state{width:20px;height:20px;border-radius: 50%;display:inline-block;}
+.forbind{background:#FF5722}
+.start{background:#5FB878}
+.resource{display:inline-block;padding:2px 8px;background:#2F4056;border-radius:10px;color:#fff}
+.btn-start{background:#5FB878}
+.btn-forbind{background:#ff5722}
+.lay_tree dt .mody_btns{background:#ccc;padding:5px 0}
+.lay_tree dd{padding-left:10px;height:26px;line-height:26px;margin:5px 0}
+.lay_tree dd.ad_bg{background:#ccc}
+/****弹出框新增页面***/
+.tan_box{background-color: #393D49;}
+.tan_box dt{height:30px;line-height:30px;padding-left:10px;background:#fff}
+.tan_box dd{color:#fff;padding:10px;}
+.tan_box dd input{color:#fff;border:1px solid #fff;border-radius:3px;height:30px;line-height:30px;margin-left:10px;padding-left:5px;width:70%}
+
+
+/****发布管理—调试页面****/
+.test_get .layui-field-title{border-color:#1E9FFF;border-width: 5px}
+.test_get .layui-elem-field legend {color:#1E9FFF}
+.test_get legend a{display:inline-block;width:30px;height:30px;line-height:30px;border-radius: 50%;border:2px solid #1E9FFF;text-align: center;}
+.test_get .layui-input-block{margin-left: 10px}
+.test_get td{padding:5px 0;}
+
+.test_post .layui-field-title{border-color:#009688;border-width: 5px}
+.test_post .layui-elem-field legend {color:#009688}
+.test_post legend a{display:inline-block;width:30px;height:30px;line-height:30px;border-radius: 50%;border:2px solid #009688;text-align: center;}
+.test_post .layui-input-block{margin-left: 10px}
+.test_post td{padding:5px 0;}
+
+.test_put .layui-field-title{border-color:#FF5722;border-width: 5px}
+.test_put .layui-elem-field legend {color:#FF5722}
+.test_put legend a{display:inline-block;width:30px;height:30px;line-height:30px;border-radius: 50%;border:2px solid #FF5722;text-align: center;}
+.test_put .layui-input-block{margin-left: 10px}
+.test_put td{padding:5px 0;}
+
+.test_del .layui-field-title{border-color:#F7B824;border-width: 5px}
+.test_del .layui-elem-field legend {color:#F7B824}
+.test_del legend a{display:inline-block;width:30px;height:30px;line-height:30px;border-radius: 50%;border:2px solid #F7B824;text-align: center;}
+.test_del .layui-input-block{margin-left: 10px}
+.test_del td{padding:5px 0;}
+.btn_pad{padding-bottom:50px}
+.lay_left{display:none}
+
+/*修改服务页面*/
+.mody_left{border:1px solid #ccc;height:100%;margin-right: 10px;vertical-align: top}
+.modify .mody_up_tab .layui-block{margin:5px 0}
+.modify .layui-form-item{margin-bottom:0}
+.mody_down_tab .layui-table td{padding:5px 5px;}
+.mody_down_tab .layui-table th{padding:5px 5px;}
+.mody_down_tab th{text-align: center;}
+.mody_down_mask{height:500px;overflow-y: auto;}
+.mody_left .layui-input-block {margin: 0 10px;}
+.mody_left dl dt{position:relative;}
+.mody_left dl dt .mody_btns{background:#ccc;padding:5px 0}
+.mody_btns ul li{float:right;margin:0 5px;}
+.mody_btns ul li a{font-size: 25px}
+.mody_left dl dd a{padding-left: 10px;display:block;line-height:30px;}
+.mody_left dl dd a.add_c{background:#1E9FFF;color:#fff}
+.mody_left dl dt a.sear{position:absolute;top:55px;right:15px}
+.mody_down_tab .layui-form-item .layui-input-inline{width:auto}
+
+.mody_edit{background-color: #393D49; color: #fff;}
+.mody_edit dt{background:#fff;color:#000;height:30px;line-height: 30px;border-bottom: 1px solid #ccc;padding-left: 10px;}
+.mody_edit dd{height:40px;margin:10px 0}
+.mody_edit dd label{width:60px;display:inline-block;text-align: right;margin-right: 10px}
+.mody_edit dd input{border:1px solid #fff;color:#ffff;height:30px;line-height: 30px;width:200px;padding-left:10px;}
+
+/**选择资源***/
+.select_res{margin-top:20px;}
+.sel_left,.sel_right{width:45%;}
+.sel_left_inner{border:1px solid #ccc;height:450px;overflow-y: auto;margin:0 5px;}
+.sel_cen{width:50px;margin-top:120px}
+.fixed_sear{margin:10px}
+.fixed_sear input{border:1px solid #ccc;border-radius:3px;height:36px;line-height: 36px;padding-left:10px;width:85%}
+.sel_left_inner dd{position:relative;padding-left: 10px;height:32px;line-height:32px;margin:5px 0;}
+.sel_left_inner dd.c_bg{background:#ccc}
+.sel_left dd .btn_look{position:absolute;right:29px;top:0.5px;}

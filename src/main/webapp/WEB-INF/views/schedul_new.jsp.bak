@@ -1,0 +1,121 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
+<html>
+<head>
+<base href="<%=basePath%>">
+<meta charset="utf-8">
+<meta http-equiv="keywords" content="Pess">
+<meta http-equiv="description" content="Pess">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="renderer" content="webkit">
+<title>新建源数据</title>
+<link rel="stylesheet" href="build/css/layui.css"  media="all">
+<link rel="stylesheet" href="themes/css/resit.css"  media="all">
+<link rel="stylesheet" href="themes/css/index.css"  media="all">
+<link rel="stylesheet" href="themes/css/data_source_new.css"  media="all">
+<script type="text/javascript" src="themes/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="build/layui.js"></script>
+
+</head>
+<body >
+<form class="layui-form" action="">
+  <div class="layui-form-item">
+    <label class="layui-form-label">类型</label>
+    <div class="layui-input-block">
+      <select name="timeType" lay-verify="required">
+        <option value=""></option>
+        <option value="0">不需要定时</option>
+        <option value="1">时间间隔</option>
+        <option value="2">天</option>
+        <option value="3">周</option>
+        <option value="4">月</option>
+      </select>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">以小时计算的间隔</label>
+    <div class="layui-input-block">
+      <input type="text" name="hour" placeholder="请输入第几秒执行" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">以分计算的间隔</label>
+    <div class="layui-input-block">
+      <input type="text" name="minute" placeholder="请输第几分钟执行" autocomplete="off" class="layui-input">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">每天</label>
+      <div class="layui-input-inline">
+        <input type="text" name="dayHour" placeholder="请输入小时" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <div class="layui-input-inline">
+        <input type="text" name="dayMinute" placeholder="请输入分钟" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+  </div>
+ 
+  <div class="layui-form-item">
+    <label class="layui-form-label">每周</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="MON" title="周一" value="1">
+      <input type="checkbox" name="TUE" title="周二" value="2">
+      <input type="checkbox" name="WED" title="周三" value="3">
+	  <input type="checkbox" name="THU" title="周四" value="4">
+      <input type="checkbox" name="FRI" title="周五" value="5">
+      <input type="checkbox" name="SAT" title="周六" value="6">
+	  <input type="checkbox" name="SUN" title="周日" value="0">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">月</label>
+      <div class="layui-input-inline">
+        <input type="text" name="mouth" placeholder="请输入月份" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-inline">
+      <div class="layui-input-inline">
+        <input type="text" name="mouthDay" placeholder="请输入号" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form()
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+    var data = $(".layui-form").serialize();
+    var excuteUrl="schedul/saveSchedul";
+    var returnUrl="schedul/list?pageNum=1";
+    ajaxPostSubmit(data,excuteUrl,returnUrl);
+  });
+
+
+});
+</script>
+</body>
+</html>

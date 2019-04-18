@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口文件所在的路径地址 -->
+<mapper namespace="com.xxx.etl.mapper.RJobMapper">
+	<select id="queryJobEntryVOById" resultType="com.xxx.etl.vo.RJobentryVO"
+		parameterType="java.lang.Integer">
+		SELECT
+			a.ID_JOBENTRY,
+			a.ID_JOB,
+			c.NAME JOBNAME,
+			b.CODE,
+			b.DESCRIPTION,
+			a.NAME JOBENTRYNAME
+		FROM
+			r_jobentry a,
+			r_jobentry_type b,
+			r_job c
+		WHERE a.ID_JOBENTRY_TYPE = b.ID_JOBENTRY_TYPE
+		  AND a.ID_JOB=c.ID_JOB
+		  AND a.ID_JOB=#{idJob}
+	</select>
+
+	<select id="queryJobByIdDirectory" resultType="com.xxx.etl.pojo.RJob"
+		parameterType="java.lang.Integer">
+		
+		SELECT * FROM r_job WHERE ID_DIRECTORY = #{idDirectory}
+	</select>
+
+</mapper>  

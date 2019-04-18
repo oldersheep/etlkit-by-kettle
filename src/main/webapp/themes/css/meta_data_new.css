@@ -1,0 +1,14 @@
+.layui-form-label{width:110px}
+.layui-form-item .layui-input-inline {
+    float: left;
+    margin-right: 10px;
+    width: 300px;
+}
+.layui-input, .layui-select, .layui-textarea {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    height: 38px;
+    line-height: 38px;
+}
+.layui-form{text-align:center}

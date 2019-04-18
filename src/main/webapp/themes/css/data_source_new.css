@@ -1,0 +1,21 @@
+
+.layui-input, .layui-select, .layui-textarea {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    height: 38px;
+    line-height: 38px;
+}
+.submit_btn{margin-top:30px;text-align:center}
+.lay_box{text-align: center;}
+.ui_box{width:30%;border:1px solid #ccc}
+.schemaList{width:400px;position:relative;border:1px solid #ccc;margin:20px 10px 10px;height:400px;overflow-y: auto;}
+.schemaList .menu_input{width:350px;}
+.item_list{padding-top:50px}
+.item_list li{line-height:32px;padding-left: 10px;position:relative;margin:2px 0}
+.item_list li:hover{background:#ccc;}
+.item_list li.add_bg{background:#ccc;}
+.item_list li .look_btn{position:absolute;right:25px;top:6px}
+.fix{position:fixed;width:300px;background:#fff;padding:10px}
+.sear_btn{position:absolute;left:310px}
+.meta_btns a{margin:5px}

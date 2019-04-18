@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 接口文件所在的路径地址 -->
+<mapper namespace="com.xxx.etl.mapper.RJobentryMapper">
+
+	<!-- 查询某个作业下的所有节点
+			m_flow_node_type是一个码值表，其内容是根据r_jobentry_type来的，可能会根据情况来增加内容
+			只要相应的js和css可以配套给上，左关联的时候，如果暂时关联不上，那么就给一个适用的。
+	 -->
+	<select id="getFlowNodes" parameterType="java.lang.Integer"
+		resultType="com.xxx.etl.vo.ZFlowNodeVO">
+		SELECT
+			c.ID_JOBENTRY_COPY `KEY`,
+			j.`NAME` `NAME`,
+			c.GUI_LOCATION_X `LEFT`,
+			c.GUI_LOCATION_Y TOP,
+			CASE WHEN t.`CODE` IS NOT NULL THEN t.`CODE`
+				 ELSE 'other' 
+			END TYPE,
+			35 WIDTH,
+			35 HEIGHT
+		FROM
+			r_jobentry_copy c,
+			r_jobentry j
+		LEFT JOIN
+			m_flow_node_type t
+		ON j.ID_JOBENTRY_TYPE = t.ID_JOBENTRY_TYPE
+		WHERE
+			c.ID_JOBENTRY = j.ID_JOBENTRY
+		AND c.ID_JOB = j.ID_JOB
+		AND c.ID_JOBENTRY_TYPE = j.ID_JOBENTRY_TYPE
+		AND c.ID_JOB = #{idJob}
+	</select>
+
+</mapper>  
